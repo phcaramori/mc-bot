@@ -55,7 +55,7 @@ client.on('message',message =>{
                         embed.addField('Players on-line:', finalMessage)
                     } else if(!numOfPlayersOnline){//if there is no-one online
                         embed.addField("Players on-line:","The server is empty")
-                        embed.footer("updates every 10 minutes")
+                        embed.setFooter("updates every 10 minutes")
                     }else{
                         message.channel.send("something went very, very wrong. TAKE ME OUT OF MY MISERY WALNUT")
                     }
