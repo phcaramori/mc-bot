@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+    const Discord = require('discord.js');
 const fetch = require('node-fetch')
 const client = new Discord.Client();
 const prefix ='-';
@@ -14,16 +14,27 @@ client.on('message',message =>{
     const command = args.shift().toLowerCase();
 
     if(command == "help"){
-        message.channel.send('Do ``-shophelp`` for help with shops and ``-datahelp`` for help wth the server datapacks. You can also do ``-seed`` to get the server seed and ``-ip`` for the ip. Finally, You can also use ``-online`` to get a list of what players are currently on the server.')
+        const embed = new Discord.MessageEmbed();
+        embed.addField("Help",".")
+        embed.addField("-shophelp","Used for help with setting up shops")
+        embed.addField("-seed", "Used to find the world's seed")
+        embed.addField("-ip", "Used to find the server's ip")
+        embed.addField("-online", "Used to get a list of what players are currently on the server")
+        message.channel.send(embed)
+        embed.setColor('#ffffff')
         //end of -help
 
     }else if(command == "shophelp"){
-        message.channel.send("Use this link for help with setting up a shop: https://github.com/Shopkeepers/Shopkeepers-Wiki/wiki/Player-Shop-Setup. \n \n if you prefer a video tutorial: https://drive.google.com/file/d/1bCkEd1eRRrp7-0aErHWyzz5PMUSeeTur/view?usp=sharing \n \n You can make the shopkeeper almost any passive mob.(Cow, sheep, cat, and much more.) I suggest that you use a villager for most shops, but you can also use shop-appropriate mobs such as using an iron golem for a iron shop or a cow for a food shop. \n \n If you have any questions, feel free to dm Walnut_.")
+        message.channel.send("Use this link for help with setting up a shop: https://github.com/Shopkeepers/Shopkeepers-Wiki/wiki/Player-Shop-Setup. \n \n If you have any questions, feel free to dm Walnut_.")
         //end of -shophelp
 
     }else if(command == "ip"){
-        message.channel.send(`Server IP: 170.81.41.61.ipv4.reishosting.com.br:26056`)
+        message.channel.send("Server IP: ``170.81.41.61.ipv4.reishosting.com.br:26056``")
         //end of -ip
+
+    }else if(command == "seed"){
+        message.channel.send("World Seed: ``3585869031427545926``")
+        //end of -seed
 
     }else if(command == "online"){ 
         const embed = new Discord.MessageEmbed()
@@ -45,6 +56,7 @@ client.on('message',message =>{
                             finalMessage = finalMessage + ' \n' + element 
                         });
                         embed.addField('Players on-line:', finalMessage)
+                        embed.setFooter("updates every 10 minutes")
                     } else if(!numOfPlayersOnline){//if there is no-one online
                         embed.addField("Players on-line:","The server is empty")
                         embed.setFooter("updates every 10 minutes")
@@ -64,6 +76,7 @@ client.on('message',message =>{
     }else if(command == "ping"){
         message.channel.send("pong")
         //end of -ping
+
     }else{
         message.channel.send("Invalid command. Do -help for a list of commands.")
     }
