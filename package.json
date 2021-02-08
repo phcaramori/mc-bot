@@ -11,7 +11,7 @@
     "fetch": "^1.1.0",
     "minecraft-server-util": "^2.1.0",
     "node-fetch": "^2.6.0",
-    "owoify": "^1.0.2",
+    "owoify-js": "^1.0.7",
     "requirejs": "^2.3.6",
     "winston": "^3.3.3"
   },

@@ -15,11 +15,13 @@ client.on('message',message =>{
 
     if(command == "help"){
         const embed = new Discord.MessageEmbed();
-        embed.addField("Help")
-        embed.addField("You can use ``-shophelp`` for help with setting up shops")
-        embed.addField("You can also do ``-seed`` to get the server seed and ``-ip`` for the ip")
-        embed.addField("Finally, you can also use ``-online`` to get a list of what players are currently on the server.")
+        embed.addField("Help",".")
+        embed.addField("-shophelp","Used for help with setting up shops")
+        embed.addField("-seed", "Used to find the world's seed")
+        embed.addField("-ip", "Used to find the server's ip")
+        embed.addField("-online", "Used to get a list of what players are currently on the server")
         message.channel.send(embed)
+        embed.setColor('#ffffff')
         //end of -help
 
     }else if(command == "shophelp"){
