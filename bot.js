@@ -20,8 +20,8 @@ client.on('message',message =>{
         embed.addField("-seed", "Used to find the world's seed")
         embed.addField("-ip", "Used to find the server's ip")
         embed.addField("-online", "Used to get a list of what players are currently on the server")
-        message.channel.send(embed)
         embed.setColor('#ffffff')
+        message.channel.send(embed)
         //end of -help
 
     }else if(command == "shophelp"){
