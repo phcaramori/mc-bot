@@ -1,1 +1,1 @@
-worker: node bot.jsa
+worker: node bot.js
