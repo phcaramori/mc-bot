@@ -24,7 +24,6 @@ function online(message) {
                         finalMessage = finalMessage + ' \n' + element;
                     });
                     embed.addField('Players on-line:', finalMessage);
-                    embed.addField(`There are ${numOfPlayersOnline} players online.`)
                     embed.setFooter("updates every 10 minutes");
                     embed.setColor('#f7ae2f');
                 }
