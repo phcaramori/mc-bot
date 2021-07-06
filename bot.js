@@ -1,7 +1,13 @@
+//externals
 const Discord = require('discord.js');
-const fetch = require('node-fetch');
-const owoify = require("owoify-js").default
-//
+const owoify = require("owoify-js").default;
+
+//commands
+const online = require('./commands/online')
+const help = require('./commands/help')
+const text = require('./commands/text-modulation')
+
+//startup
 const client = new Discord.Client();
 const prefix ='-';
 
@@ -20,86 +26,19 @@ client.on('message',message =>{
 
     //start of commands
 
-    if(command == "help"){
-        const embed = new Discord.MessageEmbed();
-        embed.addField("Help",".")
-        embed.addField("-shophelp","Used for help with setting up shops")
-        embed.addField("-seed", "Used to find the world's seed")
-        embed.addField("-ip", "Used to find the server's ip")
-        embed.addField("-online", "Used to get a list of what players are currently on the server")
-        embed.setColor('#7f7f7f')
-        message.channel.send(embed)
-        //end of -help
+    if(command == "help"){ help.help() }
+    else if(command == "shophelp"){ help.shophelp() }
+    else if(command == "online") { online.online() }
+    else if(command == "owo") { text.owo() }
+    else if(command == "uwu") { text.uwu() } 
+    else if(command == "ip"){ message.channel.send("Server IP: ``51.161.84.204:25631``") }
+    else if(command == "seed") { message.channel.send("idk the seed. dont think it works with the 1.17 world gen (yet atleast)") }
+    else if(command == "ping") { message.channel.send("ping") }
 
-    }else if(command == "shophelp"){
-        message.channel.send("Use this link for help with setting up a shop: https://github.com/Shopkeepers/Shopkeepers-Wiki/wiki/Player-Shop-Setup. \n \n If you have any questions, feel free to dm Walnut_.")
-        //end of -shophelp
+    //invalid input
 
-    }else if(command == "ip"){
-        message.channel.send("Server IP: ``170.81.41.61.ipv4.reishosting.com.br:26056``")
-        //end of -ip
-
-    }else if(command == "seed"){
-        message.channel.send("World Seed: ``3585869031427545926``")
-        //end of -seed
-
-    }else if(command == "online"){ 
-        const embed = new Discord.MessageEmbed()
-        let finalMessage = ''
-        var playersOnline;
-        var numOfPlayersOnline;
-        
-        async function run(){
-            async function getData(){
-                
-                //getting JSON results from API
-                const api_url= 'https://api.mcsrvstat.us/2/170.81.41.61.ipv4.reishosting.com.br:26056'
-                let settings = { method: "Get" }
-                fetch(api_url, settings)
-                .then(res => res.json())
-                .then((json) => {
-
-                    //making the embed with the results
-                    playersOnline = json.players.list
-                    numOfPlayersOnline = json.players.online
-
-                    if(numOfPlayersOnline){ //if there is any1 online
-                        playersOnline.forEach(element => {
-                            finalMessage = finalMessage + ' \n' + element 
-                        });
-                        embed.addField('Players on-line:', finalMessage)
-                        embed.setFooter("updates every 10 minutes")
-
-                    }
-                    else if(!numOfPlayersOnline){//if there is no-one online
-                        embed.addField("Players on-line:","The server is empty")
-                        embed.setFooter("updates every 10 minutes")
-                        //
-                    }
-                    embed.setColor('#f7ae2f')
-                    message.channel.send(embed)
-                })
-            }
-        await getData()   
-        } 
-        run()
-        //end of -online
-
-    }else if(command == "ping"){
-        message.channel.send("pong")
-        //end of -ping
-
-    }else if(command == "owo"){
-        let owoified = message.content.slice(5) //remove first 5 characters of the message (Ex: "-owo hello dude" turns into "hello dude")
-        message.channel.send(owoify(owoified, "owo")); 
-        message.delete();
-    }else if(command == "uwu"){
-        let owoified = message.content.slice(5) //remove first 5 characters of the message (Ex: "-owo hello dude" turns into "hello dude")
-        message.channel.send(owoify(owoified, "uwu")); 
-        message.delete();
-    }
-    else{
+    else{ 
         message.channel.send("Invalid command. Do -help for a list of commands.")
-    }
+}
 })
 client.login('NzQyNzk3MTI1ODQyMTA4NDU3.XzLVuw.jJGbLdDKJ-9wUEsoH7F_o6J5kBM')
