@@ -1,6 +1,5 @@
 //externals
 const Discord = require('discord.js');
-const owoify = require("owoify-js").default;
 
 //commands
 const online = require('./commands/online')
@@ -26,11 +25,11 @@ client.on('message',message =>{
 
     //start of commands
 
-    if(command == "help"){ help.help() }
-    else if(command == "shophelp"){ help.shophelp() }
-    else if(command == "online") { online.online() }
-    else if(command == "owo") { text.owo() }
-    else if(command == "uwu") { text.uwu() } 
+    if(command == "help"){ help.help(message) }
+    else if(command == "shophelp"){ help.shophelp(message) }
+    else if(command == "online") { online.online(message) }
+    else if(command == "owo") { text.owo(message) }
+    else if(command == "uwu") { text.uwu(message) } 
     else if(command == "ip"){ message.channel.send("Server IP: ``51.161.84.204:25631``") }
     else if(command == "seed") { message.channel.send("idk the seed. dont think it works with the 1.17 world gen (yet atleast)") }
     else if(command == "ping") { message.channel.send("ping") }

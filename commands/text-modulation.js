@@ -1,10 +1,19 @@
-export function owo() {
+function owo(message) {
+    const Discord = require('discord.js');
+    const owoify = require("owoify-js").default;
+
     let owoified = message.content.slice(5) //remove first 5 characters of the message (Ex: "-owo hello dude" turns into "hello dude")
+        message.delete();
         message.channel.send(owoify(owoified, "owo")); 
-        message.delete();
 }
-export function uwu () {
+function uwu (message) {
+    const Discord = require('discord.js');
+    const owoify = require("owoify-js").default;
+
     let owoified = message.content.slice(5) //remove first 5 characters of the message (Ex: "-owo hello dude" turns into "hello dude")
+        message.delete();    
         message.channel.send(owoify(owoified, "uwu")); 
-        message.delete();
 }
+
+module.exports.owo = owo;
+module.exports.uwu = uwu;

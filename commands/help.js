@@ -1,6 +1,7 @@
-export function help() {
+function help(message) {
+    const Discord = require('discord.js');
     const embed = new Discord.MessageEmbed();
-    embed.addField("Help", ".");
+    embed.setTitle("Help");
     embed.addField("-shophelp", "Used for help with setting up shops");
     embed.addField("-seed", "Used to find the world's seed");
     embed.addField("-ip", "Used to find the server's ip");
@@ -9,6 +10,9 @@ export function help() {
     message.channel.send(embed);
     //end of -help
 }
-export function shophelp() {
+function shophelp(message) {
     message.channel.send("Use this link for help with setting up a shop: https://github.com/Shopkeepers/Shopkeepers-Wiki/wiki/Player-Shop-Setup. \n \n If you have any questions, feel free to dm Walnut_.");
 }
+
+module.exports.help = help;
+module.exports.shophelp = shophelp;
