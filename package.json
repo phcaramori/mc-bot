@@ -17,7 +17,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "!class"
+    "test": "!class",
+    "start": "node bot.js"
   },
   "license": "ISC"
 }
