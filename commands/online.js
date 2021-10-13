@@ -9,7 +9,7 @@ function online(message) {
         async function getData() {
 
         //getting JSON results from API
-        const api_url = 'https://api.mcsrvstat.us/2/51.161.84.204:25631';
+        const api_url = 'https://api.mcsrvstat.us/2/daftmc.apexmc.co';
         let settings = { method: "Get" };
         fetch(api_url, settings)
             .then(res => res.json())
