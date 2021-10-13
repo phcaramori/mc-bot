@@ -30,8 +30,8 @@ client.on('message',message =>{
     else if(command == "online") { online.online(message) }
     else if(command == "owo") { text.owo(message) }
     else if(command == "uwu") { text.uwu(message) } 
-    else if(command == "ip"){ message.channel.send("Server IP: ``51.161.84.204:25631``") }
-    else if(command == "seed") { message.channel.send("idk the seed. dont think it works with the 1.17 world gen (yet atleast)") }
+    else if(command == "ip"){ message.channel.send("Server IP: ``daftmc.apexmc.co``") }
+    else if(command == "seed") { message.channel.send("```3248591824661073903```") }
     else if(command == "ping") { message.channel.send("ping") }
 
     //invalid input
