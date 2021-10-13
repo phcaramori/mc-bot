@@ -6,12 +6,13 @@ function help(message) {
     embed.addField("-seed", "Used to find the world's seed");
     embed.addField("-ip", "Used to find the server's ip");
     embed.addField("-online", "Used to get a list of what players are currently on the server");
+    embed.addField("-set", "Used to set properties for the bot. Usage: ```-set [seed/ip] (value)```");
     embed.setColor('#7f7f7f');
     message.channel.send(embed);
     //end of -help
 }
 function shophelp(message) {
-    message.channel.send("Use this link for help with setting up a shop: https://github.com/Shopkeepers/Shopkeepers-Wiki/wiki/Player-Shop-Setup. \n \n If you have any questions, feel free to dm Walnut_.");
+    message.channel.send("Use this link for help with setting up a shop: https://github.com/Shopkeepers/Shopkeepers-Wiki/wiki/Player-Shop-Setup.");
 }
 
 module.exports.help = help;
