@@ -1,5 +1,7 @@
 //externals
 const Discord = require('discord.js');
+const SERVER_SETTINGS = require('settings.js');
+import token from './auth.js';
 
 //commands
 const online = require('./commands/online')
@@ -26,12 +28,11 @@ client.on('message',message =>{
     //start of commands
 
     if(command == "help"){ help.help(message) }
-    else if(command == "shophelp"){ help.shophelp(message) }
     else if(command == "online") { online.online(message) }
     else if(command == "owo") { text.owo(message) }
     else if(command == "uwu") { text.uwu(message) } 
-    else if(command == "ip"){ message.channel.send("Server IP: ``daftmc.apexmc.co``") }
-    else if(command == "seed") { message.channel.send("```3248591824661073903```") }
+    else if(command == "ip"){ message.channel.send("Server IP: ``" + SERVER_SETTINGS.ip + "``") }
+    else if(command == "seed") { message.channel.send("```" + SERVER_SETTINGS.seed + "```") }
     else if(command == "ping") { message.channel.send("ping") }
 
     //invalid input
@@ -40,4 +41,4 @@ client.on('message',message =>{
         message.channel.send("Invalid command. Do -help for a list of commands.")
 }
 })
-client.login('NzQyNzk3MTI1ODQyMTA4NDU3.XzLVuw.jJGbLdDKJ-9wUEsoH7F_o6J5kBM')
+client.login(token)
