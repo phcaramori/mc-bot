@@ -1,3 +1,4 @@
+const SERVER_SETTINGS = require('settings.js');
 function online(message) {
     const Discord = require('discord.js');
     const fetch = require('node-fetch')
@@ -9,7 +10,7 @@ function online(message) {
         async function getData() {
 
         //getting JSON results from API
-        const api_url = 'https://api.mcsrvstat.us/2/daftmc.apexmc.co';
+        const api_url = 'https://api.mcsrvstat.us/2/' + SERVER_SETTINGS.ip;
         let settings = { method: "Get" };
         fetch(api_url, settings)
             .then(res => res.json())
