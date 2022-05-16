@@ -1,4 +1,4 @@
-const SERVER_SETTINGS = require('settings.js');
+const SERVER_SETTINGS = require('../settings.js');
 function online(message) {
     const Discord = require('discord.js');
     const fetch = require('node-fetch')
