@@ -1,7 +1,7 @@
 //externals
 const Discord = require('discord.js');
 const SERVER_SETTINGS = require('settings.js');
-import token from './auth.js';
+const TOKEN = require('./auth.js');
 
 //commands
 const online = require('./commands/online')
@@ -41,4 +41,4 @@ client.on('message',message =>{
         message.channel.send("Invalid command. Do -help for a list of commands.")
 }
 })
-client.login(token)
+client.login(TOKEN)
