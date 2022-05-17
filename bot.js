@@ -2,6 +2,7 @@
 const Discord = require('discord.js');
 const SERVER_SETTINGS = require('./settings.js');
 const TOKEN = require('./auth.js');
+
 //commands
 const online = require('./commands/online')
 const help = require('./commands/help')
