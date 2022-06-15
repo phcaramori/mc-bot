@@ -1,6 +1,7 @@
-function help(message) {
-    const Discord = require('discord.js');
-    const embed = new Discord.MessageEmbed();
+import  {MessageEmbed} from 'discord.js';
+
+export default function (message) {
+    const embed = new MessageEmbed();
     embed.setTitle("Help");
     //embed.addField("-shophelp", "Used for help with setting up shops");
     embed.addField("-seed", "Used to find the world's seed");
@@ -11,4 +12,3 @@ function help(message) {
     message.channel.send(embed);
 }
 
-module.exports = help;

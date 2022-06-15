@@ -20,5 +20,6 @@
     "test": "!class",
     "start": "node bot.js"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "type" : "module"
 }

@@ -1,2 +1,4 @@
-module.exports.ip = "us-2.purplehost.com.br:10011"
-module.exports.seed = "seed"
+export default {
+    "ip" : "us-2.purplehost.com.br:10011",
+    "seed" : "seed"
+}

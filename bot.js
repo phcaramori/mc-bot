@@ -1,15 +1,15 @@
 //externals
-const Discord = require('discord.js');
-const SERVER_SETTINGS = require('./settings.js');
-const TOKEN = require('./auth.js');
+import { Client } from 'discord.js';
+import SERVER_SETTINGS from './settings.js';
+import TOKEN from './auth.js';
 
 //commands
-const online = require('./commands/online')
-const help = require('./commands/help')
-const text = require('./commands/text-modulation')
+import online from './commands/online.js';
+import help from './commands/help.js';
+import { owo, uwu } from './commands/text-modulation.js';
 
 //startup
-const client = new Discord.Client();
+const client = new Client();
 const prefix ='-';
 
 client.once('ready', () => {
@@ -29,9 +29,9 @@ client.on('message',message =>{
 
     if(command == "help"){ help(message) }
     else if(command == "online") { online(message) }
-    else if(command == "owo") { text.owo(message) }
-    else if(command == "uwu") { text.uwu(message) } 
-    else if(command == "ip"){ message.channel.send("Server IP: ``" + SERVER_SETTINGS.ip + "``") }
+    else if(command == "owo") { owo(message) }
+    else if(command == "uwu") { uwu(message) } 
+    else if(command == "ip"){ message.channel.send("```" + SERVER_SETTINGS.ip + "```") }
     else if(command == "seed") { message.channel.send("```" + SERVER_SETTINGS.seed + "```") }
     else if(command == "ping") { message.channel.send("pong") }
 

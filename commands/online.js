@@ -1,8 +1,8 @@
-const SERVER_SETTINGS = require('../settings.js');
-function online(message) {
-    const Discord = require('discord.js');
+import SERVER_SETTINGS from '../settings.js';
+import  {MessageEmbed} from 'discord.js';
+export default function (message) {
     const fetch = require('node-fetch')
-    const embed = new Discord.MessageEmbed();
+    const embed = new MessageEmbed();
     let finalMessage = '';
     var playersOnline;
     var numOfPlayersOnline;
@@ -15,7 +15,6 @@ function online(message) {
         fetch(api_url, settings)
             .then(res => res.json())
             .then((json) => {
-                console.log('got results')
                 //making the embed with the results
                 playersOnline = json.players.list;
                 numOfPlayersOnline = json.players.online;
@@ -42,5 +41,3 @@ function online(message) {
     run();
     //end of -online
 }
-
-module.exports = online;
