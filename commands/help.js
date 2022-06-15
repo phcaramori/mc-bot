@@ -11,4 +11,4 @@ function help(message) {
     message.channel.send(embed);
 }
 
-module.exports.help = help;
+module.exports = help;

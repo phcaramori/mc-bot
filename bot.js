@@ -27,13 +27,13 @@ client.on('message',message =>{
 
     //start of commands
 
-    if(command == "help"){ help.help(message) }
-    else if(command == "online") { online.online(message) }
+    if(command == "help"){ help(message) }
+    else if(command == "online") { online(message) }
     else if(command == "owo") { text.owo(message) }
     else if(command == "uwu") { text.uwu(message) } 
     else if(command == "ip"){ message.channel.send("Server IP: ``" + SERVER_SETTINGS.ip + "``") }
     else if(command == "seed") { message.channel.send("```" + SERVER_SETTINGS.seed + "```") }
-    else if(command == "ping") { message.channel.send("ping") }
+    else if(command == "ping") { message.channel.send("pong") }
 
     //invalid input
 

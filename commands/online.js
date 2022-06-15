@@ -43,4 +43,4 @@ function online(message) {
     //end of -online
 }
 
-module.exports.online = online;
+module.exports = online;
