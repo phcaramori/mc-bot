@@ -1,4 +1,4 @@
 export default {
-    "ip" : "us-2.purplehost.com.br:10011",
+    "ip" : "br-6.purplehost.com.br:10245",
     "seed" : "seed"
 }
