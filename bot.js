@@ -23,22 +23,40 @@ client.on('message',message =>{
     const args = message.content.slice(prefix.length).split(/ +/); //returns array with all words in the command. Ex: ["help","how","to","do","this"]
     const command = args.shift().toLowerCase(); //returns only the first word in the command. Ex: "help"
 
-    console.log(command)
-
     //start of commands
+    switch (command) {
+        case "help":
+            help(message)
+            break;
 
-    if(command == "help"){ help(message) }
-    else if(command == "online") { online(message) }
-    else if(command == "owo") { owo(message) }
-    else if(command == "uwu") { uwu(message) } 
-    else if(command == "ip"){ message.channel.send("```" + SERVER_SETTINGS.ip + "```") }
-    else if(command == "seed") { message.channel.send("```" + SERVER_SETTINGS.seed + "```") }
-    else if(command == "ping") { message.channel.send("pong") }
+        case "online":
+            online(message)
+            break;
+            
+        case "owo":
+            owo(message)
+            break;
 
-    //invalid input
+        case "uwu":
+            uwu(message)
+            break;
 
-    else{ 
-        message.channel.send("Invalid command. Do -help for a list of commands.")
-}
+        case "ip":
+            message.channel.send("```" + SERVER_SETTINGS.ip + "```")
+            break;
+
+        case "seed":
+            message.channel.send("```" + SERVER_SETTINGS.seed + "```")
+            break;
+
+        case "ping":
+            message.channel.send("pong")
+            break;
+        
+        //invalid input
+        default:
+            message.channel.send("Invalid command. Do -help for a list of commands.")
+            break;
+    }
 })
 client.login(TOKEN)
