@@ -1,1 +1,1 @@
-module.exports = "NzQyNzk3MTI1ODQyMTA4NDU3.GkKH_Z.qSBEixTyUSL2c8E4Nj-TVyCmRVJwxfjivEPuUY"
+export default "NzQyNzk3MTI1ODQyMTA4NDU3.GdtjIU.hqcxRArz3gDcVvW-nHdwqhgvfFK39kNH2wysZI"
