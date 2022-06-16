@@ -1,7 +1,7 @@
 import SERVER_SETTINGS from '../settings.js';
 import  {MessageEmbed} from 'discord.js';
+import fetch from 'node-fetch';
 export default function (message) {
-    const fetch = require('node-fetch')
     const embed = new MessageEmbed();
     let finalMessage = '';
     var playersOnline;
