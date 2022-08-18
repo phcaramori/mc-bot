@@ -3,7 +3,7 @@ import { Client } from 'discord.js';
 import SERVER_SETTINGS from './settings.js';
 import TOKEN from './auth.js';
 
-//commands
+//commands - MAKE LOOP
 import online from './commands/online.js';
 import help from './commands/help.js';
 import { owo, uwu } from './commands/text-modulation.js';
@@ -11,7 +11,6 @@ import { owo, uwu } from './commands/text-modulation.js';
 //startup
 const client = new Client();
 const prefix ='-';
-
 client.once('ready', () => {
     console.log("bot online")
 })
@@ -26,7 +25,7 @@ client.on('message',message =>{
     //start of commands
     switch (command) {
         case "help":
-            help(message)
+            help.command(message)
             break;
 
         case "online":
