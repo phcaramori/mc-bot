@@ -15,7 +15,7 @@ import help from './commands/help.js';
 import owo from './commands/owo.js';
 import uwu from './commands/uwu.js';
 
-const COMMANDS = [online,help,owo,uwu]
+const COMMANDS_LIST = [online,help,owo,uwu]
 
 const client = new Client();
 const prefix = BOT_SETTINGS.prefix;
@@ -31,18 +31,19 @@ client.on('message',message =>{
     const inputCommand = args.shift().toLowerCase(); //returns only the first word in the command. Ex: "help"
 
     //start of commands
-    for(let i = 0; i < COMMANDS.length; i++){
-        if(inputCommand == COMMANDS[i].name){
-            COMMANDS[i].command(message)
-        }else if(COMMANDS[i].aliases){
-            for(let j = 0; j < COMMANDS[i].aliases.length; j++){
-                if(inputCommand == COMMANDS[i].aliases){
-                    COMMANDS[i].command(message)
+    COMMANDS_LIST.forEach(current => {
+        if(inputCommand === current.name){
+            current.command(message)
+        }else if(current.aliases){
+            current.aliases.forEach(alias => {
+                if(inputCommand === alias){
+                    current.command(message)
                 }
-            }
+            });
         }else{ //invalid input
             message.channel.send("Invalid command. Do -help for a list of commands.")
-        }
-    }
-})
+        };
+    });
+});
+
 client.login(TOKEN)
