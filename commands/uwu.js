@@ -1,4 +1,5 @@
-
+import _owoify from "owoify-js";
+let owoify = _owoify.default
 export default {
     name: "uwuify",
     aliases: ["uwu"],
