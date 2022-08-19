@@ -9,6 +9,7 @@ let COMMANDS_LIST = [];
 fs.readdirSync("commands").forEach(async function(file) {
     let a = await import ("./commands/" + file);
     COMMANDS_LIST.push(a.default);
+    console.log("LOADED: " + a.default.name)
 }) 
 
 // import online from './commands/online.js';
@@ -21,13 +22,10 @@ const client = new Client();
 const prefix = BOT_SETTINGS.prefix;
 client.once('ready', () => {
     console.log("bot online")
-    console.log(COMMANDS_LIST)
 })
 
 client.on('message',message =>{
-    console.log('message recieved');
     if(!message.content.startsWith(prefix)) return; //if message doesn't begin with the prefix, stop.
-
     const args = message.content.slice(prefix.length).split(/ +/); //returns array with all words in the command. Ex: ["help","how","to","do","this"]
     const inputCommand = args.shift().toLowerCase(); //returns only the first word in the command. Ex: "help"
 
