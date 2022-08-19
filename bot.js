@@ -44,19 +44,5 @@ client.on('message',message =>{
             message.channel.send("Invalid command. Do -help for a list of commands.")
         }
     }
-    switch (inputCommand) {
-        case "ip":
-            message.channel.send("```" + MC_SERVER_SETTINGS.ip + "```")
-            break;
-
-        case "seed":
-            message.channel.send("```" + MC_SERVER_SETTINGS.seed + "```")
-            break;
-
-        case "ping":
-            message.channel.send("pong")
-            break;
-
-    }
 })
 client.login(TOKEN)
