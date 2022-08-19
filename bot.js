@@ -12,7 +12,6 @@ fs.readdirSync("commands").forEach(async function(file) {
     console.log("LOADED: " + a.default.name)
 }) 
 
-
 const client = new Client();
 const prefix = BOT_SETTINGS.prefix;
 client.once('ready', () => {
