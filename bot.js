@@ -1,16 +1,24 @@
 //externals
+import fs from 'fs'
 import { Client } from 'discord.js';
-import SERVER_SETTINGS from './settings.js';
+import {MC_SERVER_SETTINGS , BOT_SETTINGS} from './settings.js';
 import TOKEN from './auth.js';
 
-//commands - MAKE LOOP
+//startup commands 
+// fs.readdirSync("commands").forEach(function(file) {
+//     let fileName = file.substring(0,file.length - 3)
+//     import ("./commands/" + file);
+// });
+
 import online from './commands/online.js';
 import help from './commands/help.js';
-import { owo, uwu } from './commands/text-modulation.js';
+import owo from './commands/owo.js';
+import uwu from './commands/uwu.js';
 
-//startup
+const COMMANDS = [online,help,owo,uwu]
+
 const client = new Client();
-const prefix ='-';
+const prefix = BOT_SETTINGS.prefix;
 client.once('ready', () => {
     console.log("bot online")
 })
@@ -20,42 +28,35 @@ client.on('message',message =>{
     if(!message.content.startsWith(prefix)) return; //if message doesn't begin with the prefix, stop.
 
     const args = message.content.slice(prefix.length).split(/ +/); //returns array with all words in the command. Ex: ["help","how","to","do","this"]
-    const command = args.shift().toLowerCase(); //returns only the first word in the command. Ex: "help"
+    const inputCommand = args.shift().toLowerCase(); //returns only the first word in the command. Ex: "help"
 
     //start of commands
-    switch (command) {
-        case "help":
-            help.command(message)
-            break;
-
-        case "online":
-            online(message)
-            break;
-            
-        case "owo":
-            owo(message)
-            break;
-
-        case "uwu":
-            uwu(message)
-            break;
-
+    for(let i = 0; i < COMMANDS.length; i++){
+        if(inputCommand == COMMANDS[i].name){
+            COMMANDS[i].command(message)
+        }else if(COMMANDS[i].aliases){
+            for(let j = 0; j < COMMANDS[i].aliases.length; j++){
+                if(inputCommand == COMMANDS[i].aliases){
+                    COMMANDS[i].command(message)
+                }
+            }
+        }else{ //invalid input
+            message.channel.send("Invalid command. Do -help for a list of commands.")
+        }
+    }
+    switch (inputCommand) {
         case "ip":
-            message.channel.send("```" + SERVER_SETTINGS.ip + "```")
+            message.channel.send("```" + MC_SERVER_SETTINGS.ip + "```")
             break;
 
         case "seed":
-            message.channel.send("```" + SERVER_SETTINGS.seed + "```")
+            message.channel.send("```" + MC_SERVER_SETTINGS.seed + "```")
             break;
 
         case "ping":
             message.channel.send("pong")
             break;
-        
-        //invalid input
-        default:
-            message.channel.send("Invalid command. Do -help for a list of commands.")
-            break;
+
     }
 })
 client.login(TOKEN)
