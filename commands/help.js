@@ -3,6 +3,7 @@ import  {MessageEmbed} from 'discord.js';
 export default {
     name: "help",
     aliases: ["h"],
+    description: "Generates this message. Hi!",
     command: function (message) {
         const embed = new MessageEmbed();
         embed.setTitle("Help");
