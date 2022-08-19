@@ -12,11 +12,6 @@ fs.readdirSync("commands").forEach(async function(file) {
     console.log("LOADED: " + a.default.name)
 }) 
 
-// import online from './commands/online.js';
-// import help from './commands/help.js';
-// import owo from './commands/owo.js';
-// import uwu from './commands/uwu.js';
-
 
 const client = new Client();
 const prefix = BOT_SETTINGS.prefix;
