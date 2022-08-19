@@ -4,23 +4,24 @@ import { Client } from 'discord.js';
 import {MC_SERVER_SETTINGS , BOT_SETTINGS} from './settings.js';
 import TOKEN from './auth.js';
 
-//startup commands 
-// fs.readdirSync("commands").forEach(function(file) {
-//     let fileName = file.substring(0,file.length - 3)
-//     import ("./commands/" + file);
-// });
+// startup commands 
+let COMMANDS_LIST = [];
+fs.readdirSync("commands").forEach(async function(file) {
+    let a = await import ("./commands/" + file);
+    COMMANDS_LIST.push(a.default);
+}) 
 
-import online from './commands/online.js';
-import help from './commands/help.js';
-import owo from './commands/owo.js';
-import uwu from './commands/uwu.js';
+// import online from './commands/online.js';
+// import help from './commands/help.js';
+// import owo from './commands/owo.js';
+// import uwu from './commands/uwu.js';
 
-const COMMANDS_LIST = [online,help,owo,uwu]
 
 const client = new Client();
 const prefix = BOT_SETTINGS.prefix;
 client.once('ready', () => {
     console.log("bot online")
+    console.log(COMMANDS_LIST)
 })
 
 client.on('message',message =>{
