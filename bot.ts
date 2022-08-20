@@ -1,24 +1,26 @@
 //externals
 import fs from 'fs'
-import { Client } from 'discord.js';
+import DiscordJS, { Client , GatewayIntentBits } from 'discord.js';
 import {MC_SERVER_SETTINGS , BOT_SETTINGS} from './settings.js';
-import TOKEN from './auth.js';
+import { TOKEN } from './auth.js';
 
 // startup commands 
-let COMMANDS_LIST = [];
+let COMMANDS_LIST: any = [];
 fs.readdirSync("commands").forEach(async function(file) {
     let a = await import ("./commands/" + file);
-    COMMANDS_LIST.push(a.default);
+    COMMANDS_LIST.push(a);
     console.log("LOADED: " + a.default.name)
 }) 
 
-const client = new Client();
+const client = new Client({ intents: [GatewayIntentBits.Guilds , GatewayIntentBits.GuildMessages] });
+
+
 const prefix = BOT_SETTINGS.prefix;
-client.once('ready', () => {
+client.on('ready', () => {
     console.log("bot online")
 })
 
-client.on('message',message =>{
+client.on('messageCreate', message =>{
     if(!message.content.startsWith(prefix)) return; //if message doesn't begin with the prefix, stop.
     let args = message.content.slice(prefix.length).split(/ +/); //returns array with all words in the command. Ex: ["help","how","to","do","this"]
     const inputCommand = args.shift().toLowerCase(); //returns only the first word in the command. Ex: "help"
