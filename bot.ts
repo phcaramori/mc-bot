@@ -1,3 +1,11 @@
+/* TODO:
+* - FIX EMBED SYNTAX ON HELP
+* - MAKE HELP WORK AUTOMATICALLY
+* - IMPLEMENT INTERACTIONS
+* - MAKE SIMPLE, REACTION-BASED GAME
+*/
+
+
 //externals
 import fs from 'fs'
 import DiscordJS, { Client , GatewayIntentBits } from 'discord.js';
