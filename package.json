@@ -5,7 +5,7 @@
   "main": "bot.js",
   "author": "Pedro Caramori",
   "dependencies": {
-    "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+    "discord.io": "^2.5.3",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "fetch": "^1.1.0",
@@ -15,11 +15,10 @@
     "requirejs": "^2.3.6",
     "winston": "^3.3.3"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "!class",
     "start": "node bot.js"
   },
   "license": "ISC",
-  "type" : "module"
+  "type": "module"
 }
