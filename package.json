@@ -1,24 +1,23 @@
 {
-  "name": "jorgin-mc-bot",
-  "version": "0.9.0",
-  "description": "bruh",
+  "name": "mc-bot",
+  "version": "0.2.0",
+  "description": "",
   "main": "bot.js",
-  "author": "Pedro Caramori",
-  "dependencies": {
-    "discord.io": "^2.5.3",
-    "discord.js": "^12.2.0",
-    "dotenv": "^8.2.0",
-    "fetch": "^1.1.0",
-    "minecraft-server-util": "^2.1.0",
-    "node-fetch": "^2.6.0",
-    "owoify-js": "^1.0.7",
-    "requirejs": "^2.3.6",
-    "winston": "^3.3.3"
-  },
   "scripts": {
-    "test": "!class",
-    "start": "node bot.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phcaramori/mc-bot.git"
+  },
+  "author": "",
   "license": "ISC",
-  "type": "module"
+  "bugs": {
+    "url": "https://github.com/phcaramori/mc-bot/issues"
+  },
+  "homepage": "https://github.com/phcaramori/mc-bot#readme",
+  "dependencies": {
+    "discord.js": "^14.2.0",
+    "node-fetch": "^3.2.10"
+  }
 }
