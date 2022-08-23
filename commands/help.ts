@@ -15,6 +15,8 @@ export default {
         );
         //embed.addField("-set", "Used to set properties for the bot. Usage: ```-set [seed/ip] (value)```");
         embed.setColor('#7f7f7f');
-        message.channel.send(embed);
+        message.channel.send({ embeds: [embed]});
+
+        
     }
 }
