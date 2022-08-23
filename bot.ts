@@ -5,7 +5,7 @@
 * - MAKE SIMPLE, REACTION-BASED GAME
 */
 
-
+console.log('loading...')
 //externals
 import fs from 'fs'
 import DiscordJS, { Client , GatewayIntentBits } from 'discord.js';
@@ -32,7 +32,6 @@ const prefix = "-";
 client.on('ready', () => {
     console.log("bot online")
 })
-
 client.on('messageCreate', (message) =>{
     if(!message.content.startsWith(prefix)) return; //if message doesn't begin with the prefix, stop.
     let args = message.content.slice(prefix.length).split(/ +/); //returns array with all words in the command. Ex: ["help","how","to","do","this"]
