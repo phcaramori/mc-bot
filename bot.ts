@@ -36,7 +36,7 @@ client.on('messageCreate', (message) =>{
     if(!message.content.startsWith(prefix)) return; //if message doesn't begin with the prefix, stop.
     let args = message.content.slice(prefix.length).split(/ +/); //returns array with all words in the command. Ex: ["help","how","to","do","this"]
     const inputCommand = args.shift().toLowerCase(); //returns only the first word in the command. Ex: "help"
-    console.log(inputCommand)
+    console.log("user sent the command: " + inputCommand)
     //start of commands
     COMMANDS_LIST.forEach( current => {
         if(inputCommand === current.name){
