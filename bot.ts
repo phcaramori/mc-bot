@@ -4,22 +4,12 @@
 * - IMPLEMENT INTERACTIONS
 * - MAKE SIMPLE, REACTION-BASED GAME
 */
-
-
 //externals
 import fs from 'fs'
-import DiscordJS, { Client , GatewayIntentBits } from 'discord.js';
+import DiscordJS, { Client , GatewayIntentBits , SlashCommandBuilder  } from 'discord.js';
 import {MC_SERVER_SETTINGS , BOT_SETTINGS} from './settings';
 import dotenv from 'dotenv';
 dotenv.config()
-
-// startup commands 
-let COMMANDS_LIST: any = [];
-fs.readdirSync("commands").forEach(async function(file) {
-    let a = await import ("./commands/" + file);
-    COMMANDS_LIST.push(a.default);
-    console.log("LOADED: " + a.default.name)
-}) 
 
 const client = new Client({ 
     intents: [
@@ -28,30 +18,59 @@ const client = new Client({
         GatewayIntentBits.MessageContent
     ] 
 });
+
+// startup commands 
 const prefix = "-";
+let commandsManager;
+let COMMANDS_LIST = new Map();
 client.on('ready', () => {
     console.log("bot online")
+
+    const guild_ID = "1009690142748975114"
+    const guild = client.guilds.cache.get(guild_ID)
+    commandsManager = guild.commands;
+
+    //load in all commands
+    fs.readdirSync("commands").forEach(async function(file) {
+        let command = await import ("./commands/" + file);
+        console.log("LOADED: " + command.default.data.name);
+        
+        COMMANDS_LIST.set(command.default.data.name, command.default.command);
+        commandsManager?.create(command.default.data);
+    }) 
 })
 
-client.on('messageCreate', (message) =>{
-    if(!message.content.startsWith(prefix)) return; //if message doesn't begin with the prefix, stop.
-    let args = message.content.slice(prefix.length).split(/ +/); //returns array with all words in the command. Ex: ["help","how","to","do","this"]
-    const inputCommand = args.shift().toLowerCase(); //returns only the first word in the command. Ex: "help"
-    console.log(inputCommand)
-    //start of commands
-    COMMANDS_LIST.forEach( current => {
-        if(inputCommand === current.name){
-            current.command(message,args)
-        }else if(current.aliases){
-            current.aliases.forEach(alias => {
-                if(inputCommand === alias){
-                    current.command(message,args)
-                }
-            });
-        }else{ //invalid input
-            message.channel.send("Invalid command. Do -help for a list of commands.")
-        };
-    });
-});
+//Client Interaction
+client.on('interactionCreate',async interaction => {
+    if(!interaction.isCommand()) return;
+
+    const { commandName , options } = interaction;
+
+    let selectedCommand = COMMANDS_LIST.get(commandName)
+    console.log("User inputted: " + selectedCommand)
+    selectedCommand(interaction)
+})
+
+//LEGACY COMMAND client interaction using message.content
+// client.on('messageCreate', (message) =>{
+//     if(!message.content.startsWith(prefix)) return; //if message doesn't begin with the prefix, stop.
+//     let args = message.content.slice(prefix.length).split(/ +/); //returns array with all words in the command. Ex: ["help","how","to","do","this"]
+//     const inputCommand = args.shift().toLowerCase(); //returns only the first word in the command. Ex: "help"
+//     console.log(inputCommand)
+//     //start of commands
+//     COMMANDS_LIST.forEach( current => {
+//         if(inputCommand === current.name){
+//             current.command(message,args)
+//         }else if(current.aliases){
+//             current.aliases.forEach(alias => {
+//                 if(inputCommand === alias){
+//                     current.command(message,args)
+//                 }
+//             });
+//         }else{ //invalid input
+//             message.channel.send("Invalid command. Do -help for a list of commands.")
+//         };
+//     });
+// });
 
 client.login(process.env.TOKEN)
