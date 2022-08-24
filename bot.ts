@@ -4,6 +4,8 @@
 * - IMPLEMENT INTERACTIONS
 * - MAKE SIMPLE, REACTION-BASED GAME
 */
+
+console.log('loading...')
 //externals
 import fs from 'fs'
 import DiscordJS, { Client , GatewayIntentBits , SlashCommandBuilder  } from 'discord.js';
