@@ -1,7 +1,11 @@
+import  { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
+
 export default {
-    name: "spam",
-    aliases: [],
-    description: "Spams a message in chat for a specified number of times. Deletes your original message",
+    data: new SlashCommandBuilder()
+        .setName("spam")
+        .setDescription("Spams a message in chat for a specified number of times. Deletes your original message")
+        
+        ,
     usage: "-spam 5 this message will repeat 5 times.",
     command: function (message,args) {
         let loop = parseInt(args[0])
