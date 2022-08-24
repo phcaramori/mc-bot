@@ -1,12 +1,15 @@
 import {MC_SERVER_SETTINGS} from '../settings';
-import  { EmbedBuilder } from 'discord.js';
+import  { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import https from 'https';
 
 export default {
-    name: "online",
-    aliases: ["on","players"],
-    description: "lists all players that are currently on-line on the specified server IP",
-    command: function (message){
+    data: new SlashCommandBuilder()
+        .setName("online")
+        .setDescription("lists all players that are currently on-line on the specified server IP")
+        
+        ,
+    command: function (interaction){
+        console.log('called')
         const embed = new EmbedBuilder();
         let finalMessage = '';
         var playersOnline: string[];
@@ -42,7 +45,7 @@ export default {
                     embed.setColor('#ff0000');
                 }      
 
-                message.channel.send({ embeds: [embed]});
+                interaction.reply({ embeds: [embed], ephemeral: true});
             })
         }).on("error", (err) => {
             console.log("Error when fetching server info: " + err.message);

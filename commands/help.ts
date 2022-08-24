@@ -1,10 +1,12 @@
-import  { EmbedBuilder } from 'discord.js';
+import  { EmbedBuilder , SlashCommandBuilder } from 'discord.js';
 
 export default {
-    name: "help",
-    aliases: ["h"],
-    description: "Generates this message. Hi!",
-    command: function (message) {
+    data: new SlashCommandBuilder()
+        .setName("help")
+        .setDescription("Generates this message. Hi!")
+        
+        ,
+    command: function (interaction) {
         const embed = new EmbedBuilder();
         embed.setTitle("Help");
         //embed.addField("-shophelp", "Used for help with setting up shops");
@@ -15,6 +17,6 @@ export default {
         );
         //embed.addField("-set", "Used to set properties for the bot. Usage: ```-set [seed/ip] (value)```");
         embed.setColor('#7f7f7f');
-        message.channel.send(embed);
+        interaction.reply({embeds: embed});
     }
 }
