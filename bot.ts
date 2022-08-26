@@ -8,7 +8,7 @@
 console.log('loading...')
 //externals
 import fs from 'fs'
-import DiscordJS, { Client , GatewayIntentBits , SlashCommandBuilder  } from 'discord.js';
+import { Client , GatewayIntentBits , SlashCommandBuilder  } from 'discord.js';
 import {MC_SERVER_SETTINGS , BOT_SETTINGS} from './settings';
 import dotenv from 'dotenv';
 dotenv.config()
