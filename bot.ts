@@ -44,13 +44,16 @@ client.on('ready', () => {
 
 //Client Interaction
 client.on('interactionCreate',async interaction => {
-    if(!interaction.isCommand()) return;
-
-    const { commandName , options } = interaction;
-
-    let selectedCommand = COMMANDS_LIST.get(commandName)
-    console.log("User inputted: " + commandName)
-    selectedCommand(interaction)
+    if(interaction.isCommand()){
+        const { commandName } = interaction;
+        let selectedCommand = COMMANDS_LIST.get(commandName)
+        console.log("User inputted: " + commandName)
+        selectedCommand(interaction)
+    }
+    if(interaction.isButton()){
+        let selectedCommand = COMMANDS_LIST.get(interaction.message.interaction.commandName)
+        selectedCommand(interaction)
+    }
 })
 
 //LEGACY COMMAND client interaction using message.content
