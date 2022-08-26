@@ -2,6 +2,12 @@ import  { EmbedBuilder , SlashCommandBuilder , ActionRowBuilder , ButtonBuilder 
 import * as PF from 'pathfinding'
 import * as fs from 'fs'
 
+
+/* TODO:
+    - add better state storage system that supports multiple players. (read message using interaction.fetchReply())
+        - this will make it so multiple games can be active at once
+    - add moving obstacles
+*/
 export default{
     data: new SlashCommandBuilder()
         .setName("game")
@@ -40,7 +46,7 @@ export default{
 					.setStyle(ButtonStyle.Secondary),
 			);
 
-        let updateStoredGrid = function(){
+        let updateStoredGrid = function(){ //temporary solution to state storage
             fs.writeFileSync('./json/game.json',JSON.stringify({game: gameBoard, userPosX: userPosX, userPosY: userPosY}))
         }
 
