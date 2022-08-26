@@ -49,7 +49,7 @@ client.on('interactionCreate',async interaction => {
     const { commandName , options } = interaction;
 
     let selectedCommand = COMMANDS_LIST.get(commandName)
-    console.log("User inputted: " + selectedCommand)
+    console.log("User inputted: " + commandName)
     selectedCommand(interaction)
 })
 
