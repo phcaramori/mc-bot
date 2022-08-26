@@ -44,7 +44,16 @@ export default{
             fs.writeFileSync('./json/game.json',JSON.stringify({game: gameBoard, userPosX: userPosX, userPosY: userPosY}))
         }
 
+        let makeBoardString = function(){
+            let line = '';
+            for(let i = 0; i < 7; i++){
+                line = line + gameBoard[i].join(' ') + ' \n ';
+            }
+            return line;
+        }
+
         let createGrid = async function(){
+            gameBoard = []
             for(let i = 0; i < 7; i++){
                 let temp = [];
                 let tempMatrix = [];
@@ -56,7 +65,7 @@ export default{
                 matrixForPathfinding.push(tempMatrix)
             }
 
-            //load Random Board
+            //load Random Obstacles
             for(let i = 0; i < 7; i++){
                 for(let k = 0; k < 7; k++){
                     if(Math.floor(Math.random() * 5) == 0){
@@ -89,51 +98,56 @@ export default{
             let path = finder.findPath(0, 0, randGoal1, randGoal2, grid);
             if(path.length === 0){
                 createGrid()
+            }else{
+                let embed = new EmbedBuilder()
+                let content = makeBoardString()
+                embed.addFields({name: 'Game Board:', value: content})
+                interaction.reply({ embeds: [embed], components: [row] })
             }
-            updateStoredGrid();
+            
         }
 
-        let updateGrid =  function (interaction){
+        let updateGrid = function (interaction){
             let JSONgrid = fs.readFileSync('./json/game.json');
             let parsed = JSON.parse(JSONgrid.toString())
             gameBoard = parsed.game;
             userPosX = parsed.userPosX;
             userPosY = parsed.userPosY;
+            let embed = new EmbedBuilder()
 
             gameBoard[userPosY][userPosX] = '◼️' //delete previous position
             if(interaction.customId == 'up')
                 userPosY --; 
-            else if(interaction.customId == 'right')
+            else if(interaction.customId == 'right'){
                 userPosX ++;
-            else if(interaction.customId == 'down')
+            }else if(interaction.customId == 'down'){
                 userPosY ++;
-            else if(interaction.customId == 'left')
+            }else if(interaction.customId == 'left'){
                 userPosX --;
-
-            gameBoard[userPosY][userPosX] = '🟧' // set new position
-            let line = '';
-            for(let i = 0; i < 7; i++){
-                line = line + gameBoard[i].join(' ') + ' \n ';
             }
-            let embed = new EmbedBuilder()
-            embed.addFields({name: 'Game Board:', value: line})
+            if(gameBoard[userPosY][userPosX] == '🟩'){
+                embed.setTitle("Congratulations! You win!")
+                interaction.update({ embeds: [embed], components: [] })
+                return;
+            }else if(gameBoard[userPosY][userPosX] == '◻️'){
+                embed.setTitle("You loose :(")
+                interaction.update({ embeds: [embed], components: [] })
+                return;
+            }
+            gameBoard[userPosY][userPosX] = '🟧' // set new position
+            let content = makeBoardString()
+            embed.addFields({name: 'Game Board:', value: content})
             interaction.update({ embeds: [embed], components: [row] })
-            updateStoredGrid()
         }
 
 
         if(interaction.isCommand()){
             createGrid();
-            let embed = new EmbedBuilder()
-            let line = '';
-            for(let i = 0; i < 7; i++){
-                line = line + gameBoard[i].join(' ') + ' \n ';
-            }
-            embed.addFields({name: 'Game Board:', value: line})
-            interaction.reply({ embeds: [embed], components: [row] })
+            updateStoredGrid();
         }
         if(interaction.isButton()){
             updateGrid(interaction)
+            updateStoredGrid();
         }
 
         
