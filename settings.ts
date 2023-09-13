@@ -1,5 +1,5 @@
 const MC_SERVER_SETTINGS = {
-    "ip" : "br-6.purplehost.com.br:10245",
+    "ip" : "mc.dominatecraft.fr",
     "seed" : "seed",
     "version" : "1.18"
 }

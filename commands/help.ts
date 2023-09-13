@@ -17,6 +17,6 @@ export default {
         );
         //embed.addField("-set", "Used to set properties for the bot. Usage: ```-set [seed/ip] (value)```");
         embed.setColor('#7f7f7f');
-        interaction.reply({embeds: embed});
+        interaction.reply({embeds: [embed]});
     }
 }

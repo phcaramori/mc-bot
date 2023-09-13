@@ -12,6 +12,7 @@ import { Client , GatewayIntentBits , SlashCommandBuilder  } from 'discord.js';
 import {MC_SERVER_SETTINGS , BOT_SETTINGS} from './settings';
 import dotenv from 'dotenv';
 dotenv.config()
+import {TOKEN} from './token';
 
 const client = new Client({ 
     intents: [
@@ -78,4 +79,4 @@ client.on('interactionCreate',async interaction => {
 //     });
 // });
 
-client.login(process.env.TOKEN)
+client.login(TOKEN)

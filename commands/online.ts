@@ -6,7 +6,6 @@ export default {
     data: new SlashCommandBuilder()
         .setName("online")
         .setDescription("lists all players that are currently on-line on the specified server IP")
-        
         ,
     command: function (interaction){
         console.log('called')
@@ -27,24 +26,27 @@ export default {
 
             resp.on('end', () => {
                 json = JSON.parse(data);
-                playersOnline = json.players.list;
-                numOfPlayersOnline = json.players.online;
-                embed.setTimestamp()
-                embed.setFooter({text: "updates every 10 minutes"});
+                if(!json.players){
+                    embed.addFields({name: 'There was an issue fetching server data.', value: "maybe the server is down, or an invalid IP was provided. Check the server IP"})
+                } else {
+                    playersOnline = json.players.list;
+                    numOfPlayersOnline = json.players.online;
+                    embed.setTimestamp()
+                    embed.setFooter({text: "updates every 10 minutes"});
 
-                if (numOfPlayersOnline) { //if there is any1 online
-                    playersOnline.forEach(element => {
-                        finalMessage = finalMessage + ' \n' + element;
-                    });
-                    embed.addFields({name: 'Players on-line:', value: finalMessage});
-                    embed.setColor('#f7ae2f');
-                }
+                    if (numOfPlayersOnline) { //if there is any1 online
+                        playersOnline.forEach(element => {
+                            finalMessage = finalMessage + ' \n' + element;
+                        });
+                        embed.addFields({name: 'Players on-line:', value: finalMessage});
+                        embed.setColor('#f7ae2f');
+                    }
 
-                else if (!numOfPlayersOnline) { //if there is no-one online      
-                    embed.setTitle("The server is currently empty.");
-                    embed.setColor('#ff0000');
-                }      
-
+                    else if (!numOfPlayersOnline) { //if there is no-one online      
+                        embed.setTitle("The server is currently empty.");
+                        embed.setColor('#ff0000');
+                    }      
+                } 
                 interaction.reply({ embeds: [embed], ephemeral: true});
             })
         }).on("error", (err) => {
