@@ -29,17 +29,12 @@ let COMMANDS_LIST = new Map();
 client.on('ready', () => {
     console.log("bot online")
 
-    const guild_ID = "1009690142748975114"
-    const guild = client.guilds.cache.get(guild_ID)
-    commandsManager = guild.commands;
-
     //load in all commands
     fs.readdirSync("commands").forEach(async function(file) {
         let command = await import ("./commands/" + file);
         console.log("LOADED: " + command.default.data.name);
         
         COMMANDS_LIST.set(command.default.data.name, command.default.command);
-        commandsManager?.create(command.default.data);
     }) 
 })
 
