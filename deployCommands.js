@@ -15,16 +15,16 @@ commandsFolder.forEach(async file => {
         }
     }
 })
-
 const rest = new REST().setToken(process.env.TOKEN);
 (async () => {
 	try {
         console.log(`Started refreshing ${commandsData.length} application (/) commands.`);
 		const data = await rest.put(
-            Routes.applicationCommands(process.env.CLIENTID), 
+            Routes.applicationCommands(process.env.CLIENTID),
             { body: commandsData },
         );
         console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+        console.log(data[0]);
 	} catch (error) {
 		console.error(error);
 	}
