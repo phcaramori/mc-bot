@@ -1,7 +1,7 @@
 {
-  "name": "mc-bot",
-  "version": "0.3.0",
-  "description": "",
+  "name": "minecraft-discord-server-bot",
+  "version": "0.1.0",
+  "description": "A discord bot that adds helpful tools for players of minecraft SMP servers on their own discord server",
   "main": "bot.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,19 +10,14 @@
     "type": "git",
     "url": "git+https://github.com/phcaramori/mc-bot.git"
   },
-  "author": "",
+  "author": "Pedro Caramori",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/phcaramori/mc-bot/issues"
   },
   "homepage": "https://github.com/phcaramori/mc-bot#readme",
   "dependencies": {
-    "discord.js": "^14.2.0",
-    "dotenv": "^16.0.1",
-    "pathfinding": "^0.4.18",
-    "request": "^2.88.2"
-  },
-  "devDependencies": {
-    "@types/pathfinding": "^0.0.6"
+    "discord.js": "^14.15.3",
+    "dotenv": "^16.4.5"
   }
 }
