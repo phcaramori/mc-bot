@@ -1,8 +1,7 @@
 console.log("Bot Loading... \n")
 const fs = require('node:fs');
-const { Client, Events, GatewayIntentBits, REST, Routes } = require('discord.js');
+const { Client, Events, GatewayIntentBits, } = require('discord.js');
 const dotenv = require('dotenv');
-const { Console } = require('node:console');
 
 dotenv.config();
 
