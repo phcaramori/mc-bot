@@ -18,6 +18,7 @@
   "homepage": "https://github.com/phcaramori/mc-bot#readme",
   "dependencies": {
     "discord.js": "^14.15.3",
-    "dotenv": "^16.4.5"
+    "dotenv": "^16.4.5",
+    "mongodb": "^6.7.0"
   }
 }
