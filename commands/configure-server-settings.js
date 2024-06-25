@@ -53,6 +53,7 @@ module.exports = {
 
 			if (confirmation.customId === 'confirmNewServerSettings') {
 				if(!guildData){ //if the db doesnt yet have information on this guild's settings
+					console.log("Creating new DB entry for guild " + interaction.guildID);
 					guildData = await guildProfileSchema.create({
 						guildID: interaction.guildID,
 						IP: newServerIP,
