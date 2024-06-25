@@ -9,7 +9,7 @@ module.exports = {
 	.setDefaultMemberPermissions(0) //Administrator only
 	.addStringOption(option =>
 		option.setName('ip-adress')
-			.setDescription("The server's IP adress")
+			.setDescription("The server's IP adress, including the port (if needed); input IP exactly as you type it into minecraft.")
 			.setRequired(true))
 	.addIntegerOption(option =>
 		option.setName('seed')
