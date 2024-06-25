@@ -60,7 +60,6 @@ module.exports = {
 						Seed: newServerSeed, //if no seed was given in the command, newServerSeed is already set to null.
 					})
 				}else{
-					console.log("Changin existing DB entry for guild " + interaction.guildId);
 					await guildProfileSchema.findOneAndUpdate(
 						{guildId: interaction.guildId},
 						{
