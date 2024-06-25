@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const { request } = require('undici');
-//import server ip here
+const guildProfileSchema = require('../models/guildProfileSchema')
 
 
 module.exports = {
@@ -10,9 +10,21 @@ module.exports = {
 	async execute(interaction) {
 		const embed = new EmbedBuilder();
 		let finalMessage = '', embedTitle, playersOnline;
-		const api_url = 'https://api.mcsrvstat.us/3/IP'; //! TODO: CHANGE
-		
-		const res = await request(api_url);
+		await interaction.deferReply();
+
+		//get ip from guild settings
+		let guildData;
+		try {
+			guildData = await guildProfileSchema.findOne({guildID: interaction.guildID})
+			if(!guildData){
+				interaction.editReply("```This discord server has not yet been linked to a minecraft server IP. Ask an admin to do so with /configure-server-settings```");
+				return;
+			}
+		} catch (err) {
+			console.log(err);
+		}
+
+		const res = await request(`https://api.mcsrvstat.us/3/${guildData.IP}`);
 		let data = "";
 		for await (const chunk of res.body) {
 			data += chunk;
@@ -36,10 +48,10 @@ module.exports = {
 			}else{    
 				embed.setTitle('The server is currently empty.');
 				embed.setColor('#f7ae2f');
-			}     
+			}
 		}
 	prevTimeString = prevTime.toUTCString();
 	embed.setFooter({text: `Last updated: ${prevTimeString} • Updates every minute`});
-	interaction.reply({ embeds: [embed], ephemeral: false});
+	interaction.editReply({ embeds: [embed], ephemeral: false});
 	} 
 }       
