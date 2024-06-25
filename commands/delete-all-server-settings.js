@@ -11,7 +11,7 @@ module.exports = {
 		await interaction.deferReply({ephemeral: true})
 		let guildData;
 		try {
-			guildData = await guildProfileSchema.findOne({guildID: interaction.guildID})
+			guildData = await guildProfileSchema.findOne({guildId: interaction.guildId})
 		} catch (err) {
 			console.log(err);
 		}
@@ -39,7 +39,7 @@ module.exports = {
 			const confirmation = await confirmationMsg.awaitMessageComponent({ filter: collectorFilter, time: 60_000 }); //await response TODO TEST
 
 			if (confirmation.customId === 'confirmDeleteGuildData') {
-				await guildProfileSchema.findOneAndDelete({guildID: interaction.guildID});	
+				await guildProfileSchema.findOneAndDelete({guildId: interaction.guildId});	
 				console.log()
 				resultEmbed.setColor("#78F72F")
 				resultEmbed.setTitle("Deletion Successful!")

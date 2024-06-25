@@ -15,7 +15,7 @@ module.exports = {
 		//get ip from guild settings
 		let guildData;
 		try {
-			guildData = await guildProfileSchema.findOne({guildID: interaction.guildID})
+			guildData = await guildProfileSchema.findOne({guildId: interaction.guildId})
 			if(!guildData){
 				interaction.editReply("```This discord server has not yet been linked to a minecraft server IP. Ask an admin to do so with /configure-server-settings```");
 				return;

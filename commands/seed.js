@@ -12,7 +12,7 @@ module.exports = {
 		//get seed from guild settings on mongodb
 		let guildData;
 		try {
-			guildData = await guildProfileSchema.findOne({guildID: interaction.guildID})
+			guildData = await guildProfileSchema.findOne({guildId: interaction.guildId})
 			if(!guildData){
 				interaction.editReply("```This bot has not yet been configured on this discord server. Ask an admin to do so with /configure-server-settings```");
 				return;
