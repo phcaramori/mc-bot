@@ -17,8 +17,9 @@ module.exports = {
 	async execute(interaction) {
 		await interaction.deferReply({ephemeral: true})
 		let guildData;
+		let guildID = interaction.guildID;
 		try {
-			guildData = await guildProfileSchema.findOne({guildID: interaction.guildID})
+			guildData = await guildProfileSchema.findOne({guildID: guildID})
 		} catch (err) {
 			console.log(err);
 		}
@@ -53,16 +54,16 @@ module.exports = {
 
 			if (confirmation.customId === 'confirmNewServerSettings') {
 				if(!guildData){ //if the db doesnt yet have information on this guild's settings
-					console.log("Creating new DB entry for guild " + interaction.guildID);
+					console.log("Creating new DB entry for guild " + guildID);
 					guildData = await guildProfileSchema.create({
-						guildID: interaction.guildID,
+						guildID: guildID,
 						IP: newServerIP,
 						Seed: newServerSeed, //if no seed was given in the command, newServerSeed is already set to null.
 					})
 				}else{
-					console.log("Changin existing DB entry for guild " + interaction.guildID);
+					console.log("Changin existing DB entry for guild " + guildID);
 					await guildProfileSchema.findOneAndUpdate(
-						{guildID: interaction.guildID},
+						{guildID: guildID},
 						{
 							$set: {
 								IP: newServerIP,
