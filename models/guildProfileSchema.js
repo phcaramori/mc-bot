@@ -6,6 +6,6 @@ const guildProfileSchema = new mongoose.Schema({
     Seed: { type: Number }
 })
 
-const model = mongoose.model("mcsrv-discord-bot", guildProfileSchema);
+const model = mongoose.model("guild", guildProfileSchema);
 
 module.exports = model;
