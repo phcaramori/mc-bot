@@ -24,7 +24,6 @@ const rest = new REST().setToken(process.env.TOKEN);
             { body: commandsData },
         );
         console.log(`Successfully reloaded ${data.length} application (/) commands.`);
-        console.log(data[0]);
 	} catch (error) {
 		console.error(error);
 	}
