@@ -11,13 +11,19 @@ module.exports = {
 	async execute(interaction) {
 		await interaction.deferReply({ephemeral: true})
 		let guildData;
+		let embed = new EmbedBuilder();
 		try {
 			guildData = await guildProfileSchema.findOne({guildId: interaction.guildId})
+			if (!guildData){
+				embed.setColor('#FF0000');
+				embed.setTitle("Guild has no data to be deleted.");
+				await interaction.editReply({embeds: [embed]}); 
+				return;
+			}
 		} catch (err) {
 			console.log(err);
 		}
 		
-		let embed = new EmbedBuilder();
 		embed.setColor('#FF0000');
 		embed.setTitle("Confirm deletion of all bot settings?");
 		embed.setDescription("This action is irreversible.");
