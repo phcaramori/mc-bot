@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/phcaramori/mc-bot#readme",
   "dependencies": {
+    "discord-js-command-confirmations": "^1.0.0",
     "discord.js": "^14.15.3",
     "dotenv": "^16.4.5",
     "mongoose": "^8.4.3"
